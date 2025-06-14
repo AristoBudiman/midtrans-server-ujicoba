@@ -38,16 +38,6 @@ app.post("/create-transaction", async (req, res) => {
   }
 });
 
-app.get("/check-transaction/:orderId", async (req, res) => {
-  try {
-    const orderId = req.params.orderId;
-    const transaction = await snap.transaction.status(orderId);
-    res.json(transaction);
-  } catch (err) {
-    res.status(500).json({ error: "Failed to get transaction status" });
-  }
-});
-
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`✅ Midtrans server running at http://localhost:${PORT}`);
